@@ -43,6 +43,11 @@
   --site-max-width: 1300px;
 }
 /*styling for whole site*/
+
+html {
+  scroll-behavior: smooth;
+}
+
 ul {
   list-style: none;
 }
@@ -61,7 +66,7 @@ img {
   width: 100%;
 }
 
-.section-content {
+:where(section, footer) .section-content {
   margin: 0 auto;
   padding: 0 20px;
   max-width: var(--site-max-width);
@@ -88,6 +93,9 @@ img {
 /*Navbar styling*/
 
 header {
+  z-index: 5;
+  width: 100%;
+  position: fixed;
   background: var(--primary-color);
 }
 
@@ -304,6 +312,7 @@ header .navbar {
 }
 
 .testimonials-section .testimonial {
+  user-select: none; /*Para que no pueda seleccionar las fotos o info del carrete */
   display: flex;
   padding: 35px;
   text-align: center;
@@ -441,6 +450,43 @@ header .navbar {
   background: transparent;
 }
 
+/* Footer section styling*/
+
+.footer-section {
+  padding: 20px 0;
+  background: var(--dark-color);
+}
+
+.footer-section .section-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-section :where(.copyright-text, .social-link, .policy-link) {
+  color: var(--white-color);
+  transition: 0.2s ease;
+}
+
+.footer-section .social-link-list {
+  display: flex;
+  gap: 25px;
+}
+
+.footer-section .social-link-list .social-link {
+  font-size: var(--font-size-l);
+}
+
+.footer-section .social-link-list .social-link:hover,
+.footer-section .policy-text .policy-link:hover {
+  color: var(--secondary-color);
+}
+
+.footer-section .policy-text .policy-link {
+  margin: 0 5px;
+  color: var(--white-color);
+}
+
 /******************Responsive*****************/
 
 /* Responsive media query code for max width 1024px*/
@@ -548,7 +594,7 @@ header .navbar {
 
   .about-section .section-content {
     gap: 70px;
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .about-section .about-image-wrapper .about-image {
@@ -604,5 +650,10 @@ header .navbar {
 
   .testimonials-section .swiper-slide-button {
     display: none;
+  }
+
+  .footer-section .section-content {
+    flex-direction: column;
+    gap: 20px;
   }
 }
